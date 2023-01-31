@@ -8,8 +8,8 @@ CREATE TABLE drones
     updated_date_time TIMESTAMP with time zone DEFAULT NOW() NOT NULL,
     serial_number     VARCHAR(100)                           NOT NULL,
     model             INT                                    NOT NULL,
-    weight_limit      INT                                    NOT NULL,
-    battery_capacity  DOUBLE                                 NOT NULL,
+    weight_limit      DOUBLE                                 NOT NULL,
+    battery_capacity  INT                                    NOT NULL,
     state             INT                                    NOT NULL,
     CONSTRAINT pk_drones PRIMARY KEY (id)
 );

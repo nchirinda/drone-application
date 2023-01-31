@@ -24,7 +24,7 @@ public class Drone extends BaseEntity {
 
     private double weightLimit;
 
-    private double batteryCapacity;
+    private int batteryCapacity;
 
     @Enumerated
     @Column(nullable = false)
@@ -55,11 +55,11 @@ public class Drone extends BaseEntity {
         this.weightLimit = weightLimit;
     }
 
-    public double getBatteryCapacity() {
+    public int getBatteryCapacity() {
         return batteryCapacity;
     }
 
-    public void setBatteryCapacity(double batteryCapacity) {
+    public void setBatteryCapacity(int batteryCapacity) {
         this.batteryCapacity = batteryCapacity;
     }
 

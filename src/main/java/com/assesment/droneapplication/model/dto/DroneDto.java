@@ -15,7 +15,7 @@ public record DroneDto(
         LocalDateTime createdDateTime,
         String serialNumber,
         DroneModel model,
-        int weightLimit,
-        double batteryCapacity,
+        double weightLimit,
+        int batteryCapacity,
         DroneState state) implements Serializable {
 }

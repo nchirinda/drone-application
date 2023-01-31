@@ -2,10 +2,10 @@
 
 -- changeset Nyasha_Chirinda:1675077713535-4
 INSERT INTO drones (id, serial_number, model, weight_limit, battery_capacity, state)
-VALUES ('f8bd222b-a18b-43d9-9abb-c4ca650a9d4d', 'LW007', 0, 79.0, 100.0, 0),
-       ('86780c27-1cab-407a-944a-2d61c20638b2', 'MW006', 1, 164.0, 100.0, 0),
-       ('a61139da-bf49-436c-9c37-86f7c3c694b3', 'CW004', 2, 290.0, 100.0, 0),
-       ('81c03d6c-04be-43de-accf-477d7ad08250', 'HW009', 3, 380.0, 100.0, 0);
+VALUES ('3ecc473a-8a36-414a-a772-251fa44693e7', 'LW007', 0, 79.0, 100, 0),
+       ('bc3c843b-b022-405f-b177-dd3fddda0a2d', 'MW006', 1, 164.0, 100, 0),
+       ('9125218d-5a37-46b1-8d53-e01ab0013a23', 'CW004', 2, 290.0, 100, 0),
+       ('d26d77ab-a27e-4274-b6cb-00d3b41d567c', 'LW0090', 3, 79.0, 100, 0);
 
 -- changeset Nyasha_Chirinda:1675077713535-5
 INSERT INTO medications (id, name, weight, code, image)
