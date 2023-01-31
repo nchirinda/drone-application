@@ -2,6 +2,7 @@ package com.assesment.droneapplication.model.mapper;
 
 import com.assesment.droneapplication.model.Drone;
 import com.assesment.droneapplication.model.dto.DroneDto;
+import com.assesment.droneapplication.model.payload.RegisterDroneReq;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -17,6 +18,8 @@ public interface DroneMapper {
     Drone droneDtoToDrone(DroneDto droneDto);
 
     DroneDto droneToDroneDto(Drone drone);
+
+    Drone droneReqToDrone(RegisterDroneReq registerDroneReq);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Drone updateDroneFromDroneDto(DroneDto droneDto, @MappingTarget Drone drone);

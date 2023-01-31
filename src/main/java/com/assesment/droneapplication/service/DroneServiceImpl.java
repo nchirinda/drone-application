@@ -47,12 +47,10 @@ public class DroneServiceImpl implements DroneService {
     @Override
     public DroneDto registerDrone(RegisterDroneReq registerDroneReq) {
 
-        Drone newDrone = new Drone();
+        log.info("Registering new drone: {}", registerDroneReq);
 
-        newDrone.setSerialNumber(registerDroneReq.getSerialNumber());
-        newDrone.setModel(determineDroneModel(registerDroneReq.getWeight()));
-        newDrone.setWeightLimit(registerDroneReq.getWeight());
-        newDrone.setBatteryCapacity(registerDroneReq.getBatteryCapacity());
+        Drone newDrone = droneMapper.droneReqToDrone(registerDroneReq);
+        newDrone.setModel(determineDroneModel(registerDroneReq.getWeightLimit()));
         newDrone.setState(DroneState.IDLE);
 
         return droneMapper.droneToDroneDto(droneRepository.save(newDrone));
