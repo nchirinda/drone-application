@@ -17,8 +17,8 @@ public class UniqueSerialNumberValidator implements ConstraintValidator<UniqueSe
     }
 
     @Override
-    public boolean isValid(String username, ConstraintValidatorContext context) {
-        return !droneRepository.existsBySerialNumber(username);
+    public boolean isValid(String serialNumber, ConstraintValidatorContext context) {
+        return !droneRepository.existsBySerialNumber(serialNumber);
     }
 }
 

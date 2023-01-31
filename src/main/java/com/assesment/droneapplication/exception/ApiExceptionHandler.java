@@ -1,6 +1,6 @@
 package com.assesment.droneapplication.exception;
 
-import com.assesment.droneapplication.exception.payload.ApiErrorResp;
+import com.assesment.droneapplication.model.payload.ApiErrorResp;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

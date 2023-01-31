@@ -1,4 +1,4 @@
-package com.assesment.droneapplication.exception.payload;
+package com.assesment.droneapplication.model.payload;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
