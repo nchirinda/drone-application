@@ -1,5 +1,6 @@
 package com.assesment.droneapplication.model.dto;
 
+import com.assesment.droneapplication.model.entity.Drone;
 import com.assesment.droneapplication.model.enums.DroneModel;
 import com.assesment.droneapplication.model.enums.DroneState;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 /**
- * A DTO for the {@link com.assesment.droneapplication.model.Drone} entity
+ * A DTO for the {@link Drone} entity
  */
 @Data
 public class DroneDto implements Serializable {

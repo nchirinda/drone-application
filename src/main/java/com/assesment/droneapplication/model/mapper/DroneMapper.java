@@ -1,6 +1,6 @@
 package com.assesment.droneapplication.model.mapper;
 
-import com.assesment.droneapplication.model.Drone;
+import com.assesment.droneapplication.model.entity.Drone;
 import com.assesment.droneapplication.model.dto.DroneDto;
 import com.assesment.droneapplication.model.payload.RegisterDroneReq;
 import org.mapstruct.BeanMapping;

@@ -1,6 +1,6 @@
 package com.assesment.droneapplication.service;
 
-import com.assesment.droneapplication.model.Medication;
+import com.assesment.droneapplication.model.entity.Medication;
 import com.assesment.droneapplication.model.dto.DroneDto;
 import com.assesment.droneapplication.model.payload.RegisterDroneReq;
 

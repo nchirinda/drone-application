@@ -1,7 +1,7 @@
 package com.assesment.droneapplication.model.mapper;
 
-import com.assesment.droneapplication.MedicationDto;
-import com.assesment.droneapplication.model.Medication;
+import com.assesment.droneapplication.model.dto.MedicationDto;
+import com.assesment.droneapplication.model.entity.Medication;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;

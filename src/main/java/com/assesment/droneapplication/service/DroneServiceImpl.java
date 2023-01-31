@@ -1,8 +1,8 @@
 package com.assesment.droneapplication.service;
 
 import com.assesment.droneapplication.exception.ResourceNotFoundException;
-import com.assesment.droneapplication.model.Drone;
-import com.assesment.droneapplication.model.Medication;
+import com.assesment.droneapplication.model.entity.Drone;
+import com.assesment.droneapplication.model.entity.Medication;
 import com.assesment.droneapplication.model.dto.DroneDto;
 import com.assesment.droneapplication.model.enums.DroneModel;
 import com.assesment.droneapplication.model.enums.DroneState;
@@ -14,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 /**

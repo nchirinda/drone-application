@@ -1,6 +1,6 @@
 package com.assesment.droneapplication.repository;
 
-import com.assesment.droneapplication.model.Drone;
+import com.assesment.droneapplication.model.entity.Drone;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

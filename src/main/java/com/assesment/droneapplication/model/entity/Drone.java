@@ -1,4 +1,4 @@
-package com.assesment.droneapplication.model;
+package com.assesment.droneapplication.model.entity;
 
 import com.assesment.droneapplication.model.enums.DroneModel;
 import com.assesment.droneapplication.model.enums.DroneState;
