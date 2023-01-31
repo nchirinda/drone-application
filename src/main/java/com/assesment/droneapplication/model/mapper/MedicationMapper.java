@@ -2,6 +2,7 @@ package com.assesment.droneapplication.model.mapper;
 
 import com.assesment.droneapplication.model.dto.MedicationDto;
 import com.assesment.droneapplication.model.entity.Medication;
+import com.assesment.droneapplication.model.payload.RegisterMedicationReq;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
@@ -20,4 +21,6 @@ public interface MedicationMapper {
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     Medication updateMedicationFromMedicationDto(MedicationDto medicationDto, @MappingTarget Medication medication);
+
+    Medication medicationReqToMedication(RegisterMedicationReq registerMedicationReq);
 }

@@ -10,5 +10,12 @@ import java.util.UUID;
  */
 
 public interface MedicationService {
+
+    List<MedicationDto> findAll();
+
+    MedicationDto findById(UUID id);
+
+    MedicationDto registerMedication(RegisterMedicationReq registerMedicationReq);
+
     List<MedicationDto> getLoadedMedication(UUID droneId);
 }

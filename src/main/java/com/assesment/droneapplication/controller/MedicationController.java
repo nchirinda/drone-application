@@ -31,4 +31,16 @@ public class MedicationController {
         return ResponseEntity.ok(medicationService.getLoadedMedication(droneId));
     }
 
+    @PostMapping("/register")
+    public ResponseEntity<MedicationDto> registerMedication(@Valid @RequestBody RegisterMedicationReq registerMedicationReq) {
+
+        MedicationDto createdMedication = medicationService.registerMedication(registerMedicationReq);
+
+        URI resourceLocation = ServletUriComponentsBuilder.fromCurrentRequest().replacePath("/api/v1/medication")
+                .path("/{id}")
+                .buildAndExpand(createdMedication.getId())
+                .toUri();
+
+        return ResponseEntity.created(resourceLocation).body(createdMedication);
+    }
 }
