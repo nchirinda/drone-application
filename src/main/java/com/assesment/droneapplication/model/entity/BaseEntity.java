@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -45,6 +46,14 @@ public abstract class BaseEntity implements Serializable {
 
         if (createdDateTime == null) {
             createdDateTime = LocalDateTime.now();
+            updatedDateTime = LocalDateTime.now();
+        }
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+
+        if (updatedDateTime == null) {
             updatedDateTime = LocalDateTime.now();
         }
     }
