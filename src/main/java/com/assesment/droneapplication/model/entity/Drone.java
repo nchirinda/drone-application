@@ -5,7 +5,17 @@ import com.assesment.droneapplication.model.enums.DroneState;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static jakarta.persistence.CascadeType.MERGE;
+import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.CascadeType.REMOVE;
 
 /**
  * @author Nyasha Chirinda - 30/01/2023
@@ -30,6 +40,12 @@ public class Drone extends BaseEntity {
     @Column(nullable = false)
     private DroneState state;
 
+    @ManyToMany(cascade = {PERSIST, MERGE, REMOVE})
+    @JoinTable(
+            name = "drone_medication",
+            joinColumns = {@JoinColumn(name = "drone_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "medication_id", referencedColumnName = "id")})
+    private List<Medication> medicationItems = new ArrayList<>();
 
     public String getSerialNumber() {
         return serialNumber;
@@ -69,5 +85,13 @@ public class Drone extends BaseEntity {
 
     public void setState(DroneState state) {
         this.state = state;
+    }
+
+    public List<Medication> getMedicationItems() {
+        return medicationItems;
+    }
+
+    public void setMedicationItems(List<Medication> medicationItems) {
+        this.medicationItems = medicationItems;
     }
 }

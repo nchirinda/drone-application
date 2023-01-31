@@ -28,6 +28,14 @@ CREATE TABLE medications
 );
 
 -- changeset Nyasha_Chirinda:1675077713535-3
+CREATE TABLE drone_medication
+(
+    drone_id      UUID NOT NULL,
+    medication_id UUID NOT NULL,
+    CONSTRAINT pk_drone_medication PRIMARY KEY (drone_id, medication_id)
+);
+
+-- changeset Nyasha_Chirinda:1675077713535-4
 ALTER TABLE drones
     ADD CONSTRAINT uc_drones_serialnumber UNIQUE (serial_number);
 
