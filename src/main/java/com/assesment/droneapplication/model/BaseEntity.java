@@ -42,6 +42,11 @@ public abstract class BaseEntity implements Serializable {
         if (id == null) {
             id = UUID.randomUUID();
         }
+
+        if (createdDateTime == null) {
+            createdDateTime = LocalDateTime.now();
+            updatedDateTime = LocalDateTime.now();
+        }
     }
 
     @Override
