@@ -49,6 +49,22 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(apiErrorResp);
     }
 
+    @ResponseBody
+    @ExceptionHandler(value = InsufficientBatteryCapacityException.class)
+    public ResponseEntity<ApiErrorResp> handleInsufficientBatteryCapacityException(InsufficientBatteryCapacityException ibce, ServletWebRequest request) {
+        log.error("Exception: Insufficient BatteryCapacity - ", ibce);
+        ApiErrorResp apiErrorResp = new ApiErrorResp(HttpStatus.UNPROCESSABLE_ENTITY.value(), "Drone Battery capacity too low", ibce.getMessage(), request.getRequest().getRequestURI());
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(apiErrorResp);
+    }
+
+    @ResponseBody
+    @ExceptionHandler(value = MedicationWeightOverloadException.class)
+    public ResponseEntity<ApiErrorResp> handleMedicationWeightOverloadException(MedicationWeightOverloadException mwoe, ServletWebRequest request) {
+        log.error("Exception: Medication WeightOverload - ", mwoe);
+        ApiErrorResp apiErrorResp = new ApiErrorResp(HttpStatus.BAD_REQUEST.value(), "Medication weight is beyond drone capacity", mwoe.getMessage(), request.getRequest().getRequestURI());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErrorResp);
+    }
+
     @ExceptionHandler(value = Exception.class)
     public ResponseEntity<Object> handleUncaughtException(final Exception ex, final ServletWebRequest request) {
         log.error("Exception: ", ex);

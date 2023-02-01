@@ -1,7 +1,8 @@
 package com.assesment.droneapplication.controller;
 
-import com.assesment.droneapplication.model.entity.Medication;
 import com.assesment.droneapplication.model.dto.DroneDto;
+import com.assesment.droneapplication.model.dto.MedicationDto;
+import com.assesment.droneapplication.model.payload.ApiSuccessResp;
 import com.assesment.droneapplication.model.payload.RegisterDroneReq;
 import com.assesment.droneapplication.service.DroneService;
 import jakarta.validation.Valid;
@@ -31,7 +32,7 @@ import java.util.UUID;
 @RequestMapping(value = "/api/v1/drones", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 public class DronesController {
 
-    public final DroneService droneService;
+    private final DroneService droneService;
 
     @GetMapping
     public ResponseEntity<List<DroneDto>> getAll() {
@@ -57,9 +58,21 @@ public class DronesController {
         return ResponseEntity.created(resourceLocation).body(createdDrone);
     }
 
-    @PostMapping("/load_medication")
-    public ResponseEntity<DroneDto> loadDrone(@RequestBody List<Medication> medicationList) {
-        return ResponseEntity.ok(droneService.loadDrone(medicationList));
+    @PostMapping("/{id}/load_medication")
+    public ResponseEntity<ApiSuccessResp> loadDrone(@PathVariable UUID id, @Valid @RequestBody List<MedicationDto> medicationItems) {
+        droneService.loadDrone(id, medicationItems);
+        return ResponseEntity.ok(new ApiSuccessResp("Medication loaded successfully to drone"));
+    }
+
+    @PostMapping("/{id}/unload_medication")
+    public ResponseEntity<ApiSuccessResp> unloadDrone(@PathVariable UUID id, @Valid @RequestBody List<MedicationDto> medicationItems) {
+        droneService.unloadDrone(id, medicationItems);
+        return ResponseEntity.ok(new ApiSuccessResp("Medication unloaded successfully to drone"));
+    }
+
+    @GetMapping("/{id}/medication_items")
+    public ResponseEntity<List<MedicationDto>> getLoadedMedication(@PathVariable UUID id) {
+        return ResponseEntity.ok(droneService.getLoadedMedication(id));
     }
 
     @GetMapping("/available_drones")

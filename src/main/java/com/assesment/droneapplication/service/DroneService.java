@@ -1,7 +1,7 @@
 package com.assesment.droneapplication.service;
 
-import com.assesment.droneapplication.model.entity.Medication;
 import com.assesment.droneapplication.model.dto.DroneDto;
+import com.assesment.droneapplication.model.dto.MedicationDto;
 import com.assesment.droneapplication.model.payload.RegisterDroneReq;
 
 import java.util.List;
@@ -19,7 +19,11 @@ public interface DroneService {
 
     DroneDto registerDrone(RegisterDroneReq registerDroneReq);
 
-    DroneDto loadDrone(List<Medication> medicationList);
+    void loadDrone(UUID droneId, List<MedicationDto> medicationItems);
+
+    void unloadDrone(UUID id, List<MedicationDto> registerMedicationReqs);
+
+    List<MedicationDto> getLoadedMedication(UUID droneId);
 
     List<DroneDto> getAvailableDrones();
 
