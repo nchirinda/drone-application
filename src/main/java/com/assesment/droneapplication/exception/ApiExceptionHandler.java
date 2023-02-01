@@ -61,7 +61,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = MedicationWeightOverloadException.class)
     public ResponseEntity<ApiErrorResp> handleMedicationWeightOverloadException(MedicationWeightOverloadException mwoe, ServletWebRequest request) {
         log.error("Exception: Medication WeightOverload - ", mwoe);
-        ApiErrorResp apiErrorResp = new ApiErrorResp(HttpStatus.BAD_REQUEST.value(), "Medication weight is beyond drone capacity", mwoe.getMessage(), request.getRequest().getRequestURI());
+        ApiErrorResp apiErrorResp = new ApiErrorResp(HttpStatus.BAD_REQUEST.value(), "Medication load overweight", mwoe.getMessage(), request.getRequest().getRequestURI());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiErrorResp);
     }
 

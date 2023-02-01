@@ -13,7 +13,7 @@ public class MedicationWeightOverloadException extends RuntimeException {
     private final double droneWeightLimit;
 
     public MedicationWeightOverloadException(double medItemsWeight, double droneWeightLimit) {
-        super("Total medication weight is excess: [%s]gr, drone can carry at most: [%s]gr".formatted(droneWeightLimit, droneWeightLimit));
+        super("Total medication weight is excess: %sgr, drone can carry at most: %sgr".formatted(medItemsWeight, droneWeightLimit));
         this.medItemsWeight = medItemsWeight;
         this.droneWeightLimit = droneWeightLimit;
     }

@@ -3,7 +3,7 @@
 -- changeset Nyasha_Chirinda:1675077713535-10
 INSERT INTO drones (id, serial_number, model, weight_limit, battery_capacity, state)
 VALUES ('3ecc473a-8a36-414a-a772-251fa44693e7', 'LW007', 0, 79.0, 100, 0),
-       ('bc3c843b-b022-405f-b177-dd3fddda0a2d', 'MW006', 0, 164.0, 20, 0),
+       ('bc3c843b-b022-405f-b177-dd3fddda0a2d', 'MW006', 1, 164.0, 20, 0),
        ('9125218d-5a37-46b1-8d53-e01ab0013a23', 'CW004', 2, 290.0, 74, 0),
        ('d26d77ab-a27e-4274-b6cb-00d3b41d567c', 'LW0090', 3, 79.0, 56, 0);
 

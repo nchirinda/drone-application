@@ -61,12 +61,16 @@ The application can perform the following tasks;
     --header 'Content-Type: application/json' \
     --data-raw '[
     {
-    "id": "377742c8-eb30-4d17-9744-e823cc7340cd",
-    "createdDateTime": "2023-01-31T17:35:41.006283",
-    "name": "Adcodol",
-    "weight": 500.0,
-    "code": "MD0056",
-    "image": "imagebytes"
+        "id": "02b0b316-214e-43a2-8cb0-4a6f0f4d911c",
+        "createdDateTime": "2023-02-01T16:54:34.665399",
+        "name": "Meizol",
+        "weight": 100.0,
+        "code": "MD0029",
+        "image": {
+            "name": "meizol_image",
+            "type": "png",
+            "bytes": "lkjndfs8o7tvlbjf="
+        }
     }
     ]'
 
