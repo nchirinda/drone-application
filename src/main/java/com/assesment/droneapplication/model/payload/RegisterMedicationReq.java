@@ -1,5 +1,6 @@
 package com.assesment.droneapplication.model.payload;
 
+import com.assesment.droneapplication.model.dto.MedicationImageDto;
 import com.assesment.droneapplication.model.validators.UniqueMedicationCode;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
@@ -35,5 +36,5 @@ public class RegisterMedicationReq {
     @UniqueMedicationCode
     private String code;
 
-    private String image;
+    private MedicationImageDto image;
 }

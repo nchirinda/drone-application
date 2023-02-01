@@ -2,7 +2,14 @@ package com.assesment.droneapplication.model.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+
+import static jakarta.persistence.CascadeType.MERGE;
+import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.CascadeType.REMOVE;
 
 /**
  * @author Nyasha Chirinda - 30/01/2023
@@ -15,11 +22,14 @@ public class Medication extends BaseEntity {
     @Column(nullable = false)
     private String name;
 
-   private double weight;
+    private double weight;
 
-   private String code;
+    private String code;
 
-   private String image;
+    @OneToOne(cascade = {PERSIST, MERGE, REMOVE})
+    @NotNull
+    @JoinColumn(nullable = false)
+    private MedicationImage image;
 
     public String getName() {
         return name;
@@ -45,11 +55,11 @@ public class Medication extends BaseEntity {
         this.code = code;
     }
 
-    public String getImage() {
+    public MedicationImage getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(MedicationImage image) {
         this.image = image;
     }
 }

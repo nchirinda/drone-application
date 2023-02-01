@@ -23,7 +23,7 @@ CREATE TABLE medications
     name              VARCHAR(255)                           NOT NULL,
     weight            DOUBLE                                 NOT NULL,
     code              VARCHAR(255),
-    image             VARCHAR(255),
+    image_id          VARCHAR(255),
     CONSTRAINT pk_medications PRIMARY KEY (id)
 );
 
@@ -36,6 +36,18 @@ CREATE TABLE drone_medication
 );
 
 -- changeset Nyasha_Chirinda:1675077713535-4
+CREATE TABLE medication_images
+(
+    id                UUID                                   NOT NULL,
+    created_date_time TIMESTAMP with time zone DEFAULT NOW() NOT NULL,
+    updated_date_time TIMESTAMP with time zone DEFAULT NOW() NOT NULL,
+    name              VARCHAR(255)                           NOT NULL,
+    type              VARCHAR(255)                           NOT NULL,
+    bytes             TEXT,
+    CONSTRAINT pk_medication_images PRIMARY KEY (id)
+);
+
+-- changeset Nyasha_Chirinda:1675077713535-5
 ALTER TABLE drones
     ADD CONSTRAINT uc_drones_serialnumber UNIQUE (serial_number);
 

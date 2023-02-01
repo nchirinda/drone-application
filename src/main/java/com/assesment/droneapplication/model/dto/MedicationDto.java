@@ -3,7 +3,6 @@ package com.assesment.droneapplication.model.dto;
 import com.assesment.droneapplication.model.entity.Medication;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,6 +26,6 @@ public class MedicationDto implements Serializable {
     private LocalDateTime createdDateTime;
     private String name;
     private double weight;
-    private  String code;
-    private String image;
+    private String code;
+    private MedicationImageDto image;
 }
