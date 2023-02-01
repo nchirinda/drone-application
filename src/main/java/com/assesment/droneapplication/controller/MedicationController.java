@@ -1,16 +1,22 @@
 package com.assesment.droneapplication.controller;
 
 import com.assesment.droneapplication.model.dto.MedicationDto;
+import com.assesment.droneapplication.model.payload.RegisterMedicationReq;
 import com.assesment.droneapplication.service.MedicationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,9 +32,15 @@ public class MedicationController {
 
     private final MedicationService medicationService;
 
-    @GetMapping("/{droneId}")
-    public ResponseEntity<List<MedicationDto>> getLoadedMedication(@PathVariable UUID droneId) {
-        return ResponseEntity.ok(medicationService.getLoadedMedication(droneId));
+    @GetMapping
+    public ResponseEntity<List<MedicationDto>> getAll() {
+        List<MedicationDto> resources = medicationService.findAll();
+        return ResponseEntity.ok(resources);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MedicationDto> get(@PathVariable UUID id) {
+        return ResponseEntity.ok(medicationService.findById(id));
     }
 
     @PostMapping("/register")

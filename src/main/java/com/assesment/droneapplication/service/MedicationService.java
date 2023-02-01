@@ -1,6 +1,7 @@
 package com.assesment.droneapplication.service;
 
 import com.assesment.droneapplication.model.dto.MedicationDto;
+import com.assesment.droneapplication.model.payload.RegisterMedicationReq;
 
 import java.util.List;
 import java.util.UUID;
