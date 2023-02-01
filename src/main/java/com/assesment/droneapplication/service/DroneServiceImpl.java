@@ -1,23 +1,27 @@
 package com.assesment.droneapplication.service;
 
 import com.assesment.droneapplication.exception.InsufficientBatteryCapacityException;
-import com.assesment.droneapplication.exception.ResourceNotFoundException;
 import com.assesment.droneapplication.exception.MedicationWeightOverloadException;
+import com.assesment.droneapplication.exception.ResourceNotFoundException;
 import com.assesment.droneapplication.model.dto.DroneDto;
 import com.assesment.droneapplication.model.dto.MedicationDto;
+import com.assesment.droneapplication.model.entity.BatteryAuditLog;
 import com.assesment.droneapplication.model.entity.Drone;
 import com.assesment.droneapplication.model.entity.Medication;
+import com.assesment.droneapplication.model.enums.BatteryLevel;
 import com.assesment.droneapplication.model.enums.DroneModel;
 import com.assesment.droneapplication.model.enums.DroneState;
 import com.assesment.droneapplication.model.mapper.DroneMapper;
 import com.assesment.droneapplication.model.mapper.MedicationMapper;
 import com.assesment.droneapplication.model.payload.RegisterDroneReq;
+import com.assesment.droneapplication.repository.BatteryAuditLogRepository;
 import com.assesment.droneapplication.repository.DroneRepository;
-import com.assesment.droneapplication.repository.MedicationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -36,6 +40,7 @@ public class DroneServiceImpl implements DroneService {
     private final DroneMapper droneMapper;
     private final MedicationMapper medicationMapper;
     private final DroneRepository droneRepository;
+    private final BatteryAuditLogRepository batteryAuditLogRepository;
 
     @Override
     public List<DroneDto> findAll() {
@@ -137,6 +142,47 @@ public class DroneServiceImpl implements DroneService {
         return droneRepository.getAvailableDronesForLoading().stream()
                 .map(droneMapper::droneToDroneDto)
                 .toList();
+    }
+
+    /**
+     * Scheduler to run after the previous scheduler job has completed, default 15 minutes
+     * After the application startup, it will delay to run until after the specified initialDelay, default 5 minutes
+     */
+    @Scheduled(fixedDelayString = "${audit.battery-level.fixed-rate:90000}", initialDelayString = "${audit.battery-level.initial-delay:30000}")
+    public void auditBatteryCapacity() {
+
+        long startTime = System.currentTimeMillis();
+
+        log.info("Audit Drone BatteryLevel task STARTED");
+
+        List<Drone> drones = droneRepository.findAll();
+
+        for (Drone drone : drones) {
+
+            BatteryAuditLog auditLog = new BatteryAuditLog();
+            auditLog.setDroneId(drone.getId());
+            auditLog.setBatteryCapacity(drone.getBatteryCapacity());
+            auditLog.setAuditDateTime(LocalDateTime.now());
+            auditLog.setBatteryLevel(determineBatteryLevel(drone.getBatteryCapacity()));
+
+            batteryAuditLogRepository.save(auditLog);
+        }
+
+        long endTime = System.currentTimeMillis();
+
+        log.info("Audit Drone BatteryLevel task COMPLETED, Total processing time [{}]-seconds ", (endTime - startTime) / 1000.0);
+    }
+
+    private BatteryLevel determineBatteryLevel(int batteryCapacity) {
+        if (batteryCapacity == 0) {
+            return BatteryLevel.EMPTY;
+        } else if (batteryCapacity < 25) {
+            return BatteryLevel.LOW;
+        } else if (batteryCapacity > 25 && batteryCapacity < 100) {
+            return BatteryLevel.OKAY;
+        } else {
+            return BatteryLevel.FULL;
+        }
     }
 
     @Override

@@ -48,6 +48,19 @@ CREATE TABLE medication_images
 );
 
 -- changeset Nyasha_Chirinda:1675077713535-5
+CREATE TABLE battery_audit_logs
+(
+    id                UUID                                   NOT NULL,
+    created_date_time TIMESTAMP with time zone DEFAULT NOW() NOT NULL,
+    updated_date_time TIMESTAMP with time zone DEFAULT NOW() NOT NULL,
+    drone_id          UUID                                   NOT NULL,
+    battery_level     VARCHAR(255)                           NOT NULL,
+    battery_capacity  INT                                    NOT NULL,
+    audit_date_time   TIMESTAMP with time zone DEFAULT NOW() NOT NULL,
+    CONSTRAINT pk_battery_audit_logs PRIMARY KEY (id)
+);
+
+-- changeset Nyasha_Chirinda:1675077713535-6
 ALTER TABLE drones
     ADD CONSTRAINT uc_drones_serialnumber UNIQUE (serial_number);
 

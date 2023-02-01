@@ -14,3 +14,8 @@ spring:
       path: /dronedb
   liquibase:
     change-log: classpath:/db/changelog/changelog-master.xml
+
+audit:
+  battery-level:
+    initial-delay: 300000
+    fixed-rate: 900000
