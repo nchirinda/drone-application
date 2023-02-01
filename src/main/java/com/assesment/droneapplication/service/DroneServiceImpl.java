@@ -134,12 +134,17 @@ public class DroneServiceImpl implements DroneService {
 
     @Override
     public List<DroneDto> getAvailableDrones() {
-        return null;
+        return droneRepository.getAvailableDronesForLoading().stream()
+                .map(droneMapper::droneToDroneDto)
+                .toList();
     }
 
     @Override
-    public String getDroneBatteryLevel(UUID droneId) {
-        return null;
+    public int getDroneBatteryLevel(UUID droneId) {
+        Drone drone = droneRepository.findById(droneId)
+                .orElseThrow(() -> new ResourceNotFoundException("Get Drone Battery Level", "Drone", "ID", droneId));
+
+        return drone.getBatteryCapacity();
     }
 
     DroneModel determineDroneModel(int weight) {

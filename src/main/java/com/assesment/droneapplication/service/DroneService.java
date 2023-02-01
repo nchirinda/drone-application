@@ -27,5 +27,5 @@ public interface DroneService {
 
     List<DroneDto> getAvailableDrones();
 
-    String getDroneBatteryLevel(UUID droneId);
+    int getDroneBatteryLevel(UUID droneId);
 }

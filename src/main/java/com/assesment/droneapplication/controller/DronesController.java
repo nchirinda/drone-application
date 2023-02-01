@@ -81,7 +81,7 @@ public class DronesController {
     }
 
     @GetMapping("/{droneId}/battery_level")
-    public ResponseEntity<String> getDroneBatteryLevel(@PathVariable UUID droneId) {
+    public ResponseEntity<Integer> getDroneBatteryLevel(@PathVariable UUID droneId) {
         return ResponseEntity.ok(droneService.getDroneBatteryLevel(droneId));
     }
 }
