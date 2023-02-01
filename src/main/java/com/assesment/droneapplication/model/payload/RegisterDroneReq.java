@@ -29,8 +29,8 @@ public class RegisterDroneReq {
     @UniqueSerialNumber
     private String serialNumber;
 
-    @Max(value = 500, message = "maximum weight allowed for a drone is 500gr")
-    private int weightLimit;
+    @Max(value = 500, message = "maximum weight allowed for a drone is 500.0gr")
+    private double weightLimit;
 
     @Min(value = 0, message = "drone battery level can not go below 0%")
     @Max(value = 100, message = "drone battery level can not go above 100%")

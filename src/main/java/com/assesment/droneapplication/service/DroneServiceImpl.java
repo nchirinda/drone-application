@@ -55,7 +55,7 @@ public class DroneServiceImpl implements DroneService {
     @Override
     public DroneDto registerDrone(RegisterDroneReq registerDroneReq) {
 
-        log.info("Registering new drone: {}", registerDroneReq);
+        log.info("Registering new drone: {}", toJson(registerDroneReq));
 
         Drone newDrone = droneMapper.droneReqToDrone(registerDroneReq);
         newDrone.setModel(determineDroneModel(registerDroneReq.getWeightLimit()));
@@ -147,12 +147,12 @@ public class DroneServiceImpl implements DroneService {
         return drone.getBatteryCapacity();
     }
 
-    DroneModel determineDroneModel(int weight) {
-        if (weight <= 100) {
+    DroneModel determineDroneModel(double weight) {
+        if (weight <= 100.0) {
             return DroneModel.LIGHT_WEIGHT;
-        } else if (weight <= 200) {
+        } else if (weight <= 200.0) {
             return DroneModel.MIDDLE_WEIGHT;
-        } else if (weight <= 350) {
+        } else if (weight <= 350.0) {
             return DroneModel.CRUISER_WEIGHT;
         } else {
             return DroneModel.HEAVY_WEIGHT;
