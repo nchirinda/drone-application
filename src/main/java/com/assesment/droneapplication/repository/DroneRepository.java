@@ -11,7 +11,7 @@ public interface DroneRepository extends JpaRepository<Drone, UUID> {
 
     boolean existsBySerialNumber(String serialNumber);
 
-    @Query("SELECT d FROM Drone d WHERE d.state = 1 AND d.batteryCapacity >= 25")
+    @Query("SELECT d FROM Drone d WHERE d.state = 0 AND d.batteryCapacity >= 25")
     List<Drone> getAvailableDronesForLoading();
 
 }
